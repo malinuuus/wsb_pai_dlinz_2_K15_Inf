@@ -1,0 +1,13 @@
+    1  git clone https://github.com/malinuuus/wsb_pai_dlinz_2_K15_Inf.git
+    2  cd wsb_pai_dlinz_2_K15_Inf/
+    3  ls
+    4  alias c-clear
+    5  c
+    6  alias c=clear
+    7  c
+    8  git log
+    9  c
+   10* git log --o
+   11  c
+   12  history
+   13  history > filehistory
