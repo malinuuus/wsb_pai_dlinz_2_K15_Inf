@@ -15,7 +15,7 @@
         <br>
     DATA;
 
-    // nodedoc - do wielokrotnego użytku
+    // heredoc przypisany do zmiennej
     $data = <<< DATA
         <hr>
         Imię: $firstName<br>
@@ -25,7 +25,7 @@
 
     echo $data;
 
-    // etykieta w '' nie rozpoznaje zmiennych
+    // nowdoc - nie rozpoznaje zmiennych i znaków specjalnych
     $data1 = <<< 'DATA'
         <hr>
         Imię: $firstName<br>
