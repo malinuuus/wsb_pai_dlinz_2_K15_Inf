@@ -11,9 +11,8 @@
   <?php
     require_once "../scripts/connect.php";
     $sql = "SELECT * FROM `users`";
-    $result = $connect->query($sql); // zapytanie na serwer sql
-
-    // tablica asjocacyjna
+    $result = $conn->query($sql); // zapytanie na serwer sql
+    // tablica asocjacyjna
     // $user = $result->fetch_assoc();
     // print_r($user);
 
