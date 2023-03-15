@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 15 Mar 2023, 12:09
+-- Czas generowania: 15 Mar 2023, 13:28
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -77,6 +77,15 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
+-- Zrzut danych tabeli `users`
+--
+
+INSERT INTO `users` (`id`, `city_id`, `firstName`, `lastName`, `birthday`) VALUES
+(1, 7, 'Tomasz', 'Malinowski', '2002-12-18'),
+(2, 8, 'Maryla', 'Rodowicz', '1924-03-20'),
+(3, 7, 'Jan', 'Kowalski', '1999-05-26');
+
+--
 -- Indeksy dla zrzutów tabel
 --
 
@@ -120,7 +129,7 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ograniczenia dla zrzutów tabel
