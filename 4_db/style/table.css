@@ -1,0 +1,11 @@
+table, tr, th, td {
+    border: solid 1px dimgray;
+    text-align: center;
+    padding: 10px;
+    /* brak linii dookoła*/
+    border-collapse: collapse;
+}
+
+body {
+    background: #ffd9e0;
+}
