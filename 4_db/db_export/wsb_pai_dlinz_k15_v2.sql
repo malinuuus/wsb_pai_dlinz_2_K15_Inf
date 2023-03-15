@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 15 Mar 2023, 13:28
+-- Czas generowania: 15 Mar 2023, 15:56
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `wsb_pai_dlizn_k15`
+-- Baza danych: `wsb_pai_dlinz_k15`
 --
 
 -- --------------------------------------------------------
@@ -45,22 +45,42 @@ INSERT INTO `cities` (`id`, `state_id`, `city`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `countries`
+--
+
+CREATE TABLE `countries` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `country` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Zrzut danych tabeli `countries`
+--
+
+INSERT INTO `countries` (`id`, `country`) VALUES
+(1, 'Polska'),
+(2, 'Francja');
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `states`
 --
 
 CREATE TABLE `states` (
   `id` int(10) UNSIGNED NOT NULL,
-  `state` varchar(50) NOT NULL
+  `state` varchar(50) NOT NULL,
+  `country_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Zrzut danych tabeli `states`
 --
 
-INSERT INTO `states` (`id`, `state`) VALUES
-(1, 'wielkopolskie'),
-(2, 'zachodnio-pomorskie'),
-(3, 'śląskie');
+INSERT INTO `states` (`id`, `state`, `country_id`) VALUES
+(1, 'wielkopolskie', 1),
+(2, 'zachodnio-pomorskie', 1),
+(3, 'śląskie', 1);
 
 -- --------------------------------------------------------
 
@@ -97,10 +117,18 @@ ALTER TABLE `cities`
   ADD KEY `state_id` (`state_id`) USING BTREE;
 
 --
+-- Indeksy dla tabeli `countries`
+--
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeksy dla tabeli `states`
 --
 ALTER TABLE `states`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `country_id` (`country_id`),
+  ADD KEY `country_id_2` (`country_id`);
 
 --
 -- Indeksy dla tabeli `users`
@@ -118,6 +146,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `cities`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT dla tabeli `countries`
+--
+ALTER TABLE `countries`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `states`
@@ -140,6 +174,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `cities`
   ADD CONSTRAINT `cities_ibfk_1` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`);
+
+--
+-- Ograniczenia dla tabeli `states`
+--
+ALTER TABLE `states`
+  ADD CONSTRAINT `states_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`);
 
 --
 -- Ograniczenia dla tabeli `users`
