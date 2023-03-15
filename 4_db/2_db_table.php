@@ -12,10 +12,11 @@
     <h4>Użytkownicy</h4>
     <?php
         require_once "../scripts/connect.php";
-        $sql = "SELECT U.firstName, U.lastName, U.birthday, C.city, S.state
+        $sql = "SELECT U.firstName, U.lastName, U.birthday, C.city, S.state, Co.country
                 FROM users U
                 INNER JOIN cities C ON c.id = u.city_id
-                INNER JOIN states S on S.id = C.state_id;";
+                INNER JOIN states S on S.id = C.state_id
+                INNER JOIN countries Co on Co.id = S.country_id";
         $result = $conn->query($sql);
 
         echo <<< USERSTABLE
@@ -26,6 +27,7 @@
                     <th>Data urodzenia</th>
                     <th>Miasto</th>
                     <th>Województwo</th>
+                    <th>Kraj</th>
                 </tr>
         USERSTABLE;
 
@@ -37,6 +39,7 @@
                     <td>$user[birthday]</td>
                     <td>$user[city]</td>
                     <td>$user[state]</td>
+                    <td>$user[country]</td>
                 </tr>
             USERS;
         }
