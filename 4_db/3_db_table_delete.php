@@ -96,25 +96,19 @@
             echo "<a href='../scripts/switch_table.php?table=cities'>przełącz tabelę</a>";
         }
 
-        // jeśli istnieje zmienna deleteUser
-        if (isset($_GET["deleteUser"])) {
-            echo "<hr>";
-            if ($_GET["deleteUser"] != 0) {
-                echo "Usunięto użytkownika o id = $_GET[deleteUser]";
-            } else {
-                echo "Nie usunięto użytkownika";
+        function showMessage(string $urlParam, string $whatDeleted) {
+            if (isset($_GET[$urlParam])) {
+                echo "<hr>";
+                if ($_GET[$urlParam] != 0) {
+                    echo "$whatDeleted o id = $_GET[$urlParam] został usunięty";
+                } else {
+                    echo "$whatDeleted nie został usunięty";
+                }
             }
         }
 
-        // jeśli istnieje zmienna deleteCity
-        if (isset($_GET["deleteCity"])) {
-            echo "<hr>";
-            if ($_GET["deleteCity"] != 0) {
-                echo "Usunięto miasto o id = $_GET[deleteCity]";
-            } else {
-                echo "Nie usunięto miasta";
-            }
-        }
+        showMessage("deleteUser", "użytkownik");
+        showMessage("deleteCity", "miasto");
     ?>
 </body>
 </html>
