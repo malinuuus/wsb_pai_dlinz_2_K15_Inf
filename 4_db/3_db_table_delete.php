@@ -9,10 +9,11 @@
     <title>Użytkownicy</title>
 </head>
 <body>
-    <h4>Użytkownicy</h4>
     <?php
         require_once "../scripts/connect.php";
         if (isset($_GET["table"]) && $_GET["table"] == "cities") {
+            echo "<h4>Miasta</h4>";
+
             // tabela z miastami
             $sql = "SELECT c.id, s.state, c.city
                     FROM cities c
@@ -50,6 +51,8 @@
             echo "</table>";
             echo "<a href='../scripts/switch_table.php?table=users'>przełącz tabelę</a>";
         } else {
+            echo "<h4>Użytkownicy</h4>";
+
             // tabela z użytkownikami
             $sql = "SELECT u.id, u.firstName, u.lastName, u.birthday, c.city, s.state, co.country
                 FROM users u
