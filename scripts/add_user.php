@@ -6,12 +6,16 @@ $lastName = $_POST['lastName'];
 $birthday = $_POST['birthday'];
 $city = $_POST['city'];
 
-$sql = "SELECT id FROM cities WHERE city = '$city'";
-$result = $conn->query($sql);
-$id = $result->fetch_assoc()['id'];
+if (trim($firstName) != '' &&
+    trim($lastName) != '' &&
+    $birthday > '0000-00-00') {
+    $sql = "SELECT id FROM cities WHERE city = '$city'";
+    $result = $conn->query($sql);
+    $id = $result->fetch_assoc()['id'];
 
-$sql = "INSERT INTO users (city_id, firstName, lastName, birthday)
+    $sql = "INSERT INTO users (city_id, firstName, lastName, birthday)
         VALUES ($id, '$firstName', '$lastName', '$birthday')";
-$conn->query($sql);
+    $conn->query($sql);
+}
 
 header("location: ../4_db/3_db_table_delete.php");
