@@ -95,6 +95,34 @@
                     </tr>
                 USERS;
             }
+
+            $sql = "SELECT city FROM cities";
+            $result = $conn->query($sql);
+            
+            echo <<< ADDUSER
+                <tr>
+                    <form action="../scripts/add_user.php" method="post">
+                        <td><input type="text" name="firstName"></td>
+                        <td><input type="text" name="lastName"></td>
+                        <td><input type="date" name="birthday"></td>
+                        <td>
+                            <select name="city" id="city">
+            ADDUSER;
+
+            while ($row = $result->fetch_assoc()) {
+                echo "<option>$row[city]</option>";
+            }
+
+            echo <<< ADDUSER
+                            </select>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="submit" value="dodaj"></td>
+                    <form>
+                </tr>
+            ADDUSER;
+
             echo "</table>";
             echo "<a href='../scripts/switch_table.php?table=cities'>przełącz tabelę</a>";
         }
