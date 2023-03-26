@@ -9,3 +9,8 @@ table, tr, th, td {
 body {
     background: #ffd9e0;
 }
+
+input, select {
+    max-width: 100px;
+    padding: 5px 2px;
+}
