@@ -13,4 +13,4 @@ try {
 } catch (Exception $e) {}
 
 // cofa i odświeża
-header("location: ../4_db/3_db_table_delete.php?table=cities&deleteCity=$deleteCity");
+header("location: ../4_db/4_db_table_add.php?table=cities&deleteCity=$deleteCity");
