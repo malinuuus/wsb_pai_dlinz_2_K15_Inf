@@ -15,8 +15,10 @@ $sql = "UPDATE users
         firstName = '$_POST[firstName]',
         lastName = '$_POST[lastName]',
         birthday = '$_POST[birthday]'
-        WHERE id = $_GET[updateUserId]";
+        WHERE id = $_SESSION[updateUserId]";
 $conn->query($sql);
+
+unset($_SESSION['updateUserId']); // usunięcie zmiennej sesyjnej
 
 if ($conn->affected_rows == 1) {
     $_SESSION['error'] = "Prawidłowo zaktualizowano rekord";

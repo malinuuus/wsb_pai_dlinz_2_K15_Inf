@@ -125,6 +125,8 @@ session_start();
         showMessage("deleteUser", "użytkownik");
         showMessage("deleteCity", "miasto");
 
+        echo '<hr><a href="./5_db_table_update.php?addUserForm=1">Dodaj użytkownika</a>';
+
         // formularz dla dodawania i edycji
         if (isset($_GET['addUserForm']) || isset($_GET['updateUserId'])) {
             if (isset($_GET['updateUserId'])) {
@@ -135,29 +137,32 @@ session_start();
                 $lastName = $user['lastName'];
                 $city_id = $user['city_id'];
                 $birthday = $user['birthday'];
-                $actionPath = "../scripts/update_user.php?updateUserId=$_GET[updateUserId]";
+                $_SESSION['updateUserId'] = $_GET['updateUserId'];
+                $actionPath = "../scripts/update_user.php";
                 $submitName = "Zaktualizuj użytkownika";
 
                 echo "<hr><h4>Aktualizacja użytkownika</h4>";
             } else {
+                $firstName = "";
+                $lastName = "";
                 $actionPath = "../scripts/add_user.php";
                 $submitName = "Dodaj użytkownika";
                 echo "<hr><h4>Dodawanie użytkownika</h4>";
             }
 
-            echo <<< ADDUSERFORM
+            echo <<< ADDUPDATEUSERFORM
                 <form action="$actionPath" method="post">
                     <!-- autofocus - automatyczny focus na to pole -->
                     <input type="text" name="firstName" value="$firstName" placeholder="Podaj imię" autofocus><br><br>
                     <input type="text" name="lastName" value="$lastName" placeholder="Podaj nazwisko"><br><br>
                     <select name="city_id">
-            ADDUSERFORM;
+            ADDUPDATEUSERFORM;
 
             $sql = "SELECT id, city FROM cities";
             $result = $conn->query($sql);
 
             while ($city = $result->fetch_assoc()) {
-                if (isset($_GET['updateUserId']) && $city_id == $city['id']) {
+                if ($city_id == $city['id']) {
                     // zaznaczona opcja w przypadku edycji
                     echo "<option selected value='$city[id]'>$city[city]</option>";
                 } else {
@@ -165,17 +170,16 @@ session_start();
                 }
             }
 
-            echo <<< ADDUSERFORM
+            echo <<< ADDUPDATEUSERFORM
                     </select><br><br>
                     <!-- value - wartość inputa -->
                     <!-- <input type="text" name="city_id" placeholder="Podaj miasto" value="1"><br><br> -->
                     <input type="date" name="birthday" value="$birthday">Data urodzenia<br><br>
                     <input type="submit" value="$submitName">
                 </form>
-            ADDUSERFORM;
-        } else {
-            echo '<hr><a href="./4_db_table_add.php?addUserForm=1">Dodaj użytkownika</a>';
+            ADDUPDATEUSERFORM;
         }
+        $conn->close(); // zamknięcie połączenia z bazą danych
     ?>
 </body>
 </html>
