@@ -1,3 +1,3 @@
 <?php
 $table = $_GET["table"];
-header("location: ../4_db/4_db_table_add.php?table=$table");
+header("location: ../4_db/5_db_table_update.php?table=$table");

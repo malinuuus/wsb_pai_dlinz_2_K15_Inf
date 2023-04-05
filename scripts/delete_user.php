@@ -14,7 +14,7 @@ if ($conn->affected_rows != 0) {
 }
 
 // cofa i odświeża
-header("location: ../4_db/4_db_table_add.php?deleteUser=$deleteUser");
+header("location: ../4_db/5_db_table_update.php?deleteUser=$deleteUser");
 ?>
 <!---->
 <!--<script>-->
