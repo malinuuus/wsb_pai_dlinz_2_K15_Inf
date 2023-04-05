@@ -4,18 +4,27 @@
 session_start();
 // print_r($_POST);
 
+$error = 0;
+
 foreach ($_POST as $key => $value) {
     // echo "$key: $value<br>";
     // zwraca true jeśli wartość jest pusta lub nie istnieje
     if (empty($value)) {
-        // header("location: ..") wyczyściłoby formularz
-        echo "<script>history.back();</script>";
-
         $_SESSION['error'] = 'Wypełnij wszystkie pola w formularzu';
-
-        // bez exit skrypt wykonywałby się dalej mimo pustej wartości
-        exit();
+        $error++;
     }
+}
+
+if (!isset($_POST["term"])) {
+    $_SESSION["error"] = "Zatwierdź regulamin!";
+    $error++;
+}
+
+if ($error != 0) {
+    // header("location: ..") wyczyściłoby formularz
+    echo "<script>history.back()</script>";
+    // bez exit skrypt wykonywałby się dalej mimo pustej wartości
+    exit();
 }
 
 require_once './connect.php';

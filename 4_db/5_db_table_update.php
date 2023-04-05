@@ -175,6 +175,13 @@ session_start();
                     <!-- value - wartość inputa -->
                     <!-- <input type="text" name="city_id" placeholder="Podaj miasto" value="1"><br><br> -->
                     <input type="date" name="birthday" value="$birthday">Data urodzenia<br><br>
+            ADDUPDATEUSERFORM;
+
+            if (isset($_GET["addUserForm"])) {
+                echo '<label><input type="checkbox" name="term">Regulamin</label><br><br>';
+            }
+
+            echo <<< ADDUPDATEUSERFORM
                     <input type="submit" value="$submitName">
                 </form>
             ADDUPDATEUSERFORM;
