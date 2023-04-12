@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,5 +140,23 @@
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+
+<?php
+if (isset($_SESSION["error"])) {
+    echo <<< SCRIPT
+        <script>
+            $(document).Toasts('create', {
+                class: 'bg-warning',
+                title: 'Uwaga',
+                body: '$_SESSION[error]',
+                autohide: true,
+                delay: 3000
+            });
+        </script>
+    SCRIPT;
+    unset($_SESSION["error"]);
+}
+?>
+
 </body>
 </html>
