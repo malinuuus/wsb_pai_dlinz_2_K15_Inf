@@ -2,14 +2,35 @@
 //echo "<pre>";
 //print_r($_POST);
 //echo "</pre>";
+session_start();
+$error = 0;
 
 foreach ($_POST as $key => $value) {
     if (empty($value)) {
-        session_start();
-        $_SESSION["error"] = "Wypełnij wszystkie pola w formularzu";
-        echo "<script>history.back()</script>";
-        exit();
+        $_SESSION["error"] = "Wypełnij wszystkie pola w formularzu!";
+        $error++;
+        break;
     }
+}
+
+if ($error == 0 && $_POST["email1"] !== $_POST["email2"]) {
+    $_SESSION["error"] = "Adres email musi być taki sam!";
+    $error++;
+}
+
+if ($error == 0 && $_POST["pass1"] !== $_POST["pass2"]) {
+    $_SESSION["error"] = "Hasło musi być takie samo w obu polach!";
+    $error++;
+}
+
+if ($error == 0 && !isset($_POST["terms"])) {
+    $_SESSION["error"] = "Zatwierdź regulamin!";
+    $error++;
+}
+
+if ($error != 0) {
+    echo "<script>history.back()</script>";
+    exit();
 }
 
 $hashedPassword = password_hash($_POST["pass1"], PASSWORD_ARGON2I);
