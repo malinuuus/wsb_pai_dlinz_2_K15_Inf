@@ -91,12 +91,16 @@ session_start();
           </div>
 
           <div class="input-group mb-3">
-              <input type="number" class="form-control" placeholder="Podaj id miasta" name="city_id">
-              <div class="input-group-append">
-                  <div class="input-group-text">
-                      <span class="fas fa-city"></span>
-                  </div>
-              </div>
+              <select name="city_id" class="form-control select2">
+                  <?php
+                  require_once "../scripts/connect.php";
+                  $result = $conn->query("SELECT id, city FROM cities");
+
+                  while ($city = $result->fetch_assoc()) {
+                      echo "<option value='$city[id]'>$city[city]</option>";
+                  }
+                  ?>
+              </select>
           </div>
 
         <div class="row">
