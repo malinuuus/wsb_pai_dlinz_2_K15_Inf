@@ -91,7 +91,7 @@ session_start();
           </div>
 
           <div class="input-group mb-3">
-              <select name="city_id" class="form-control select2">
+              <select name="city_id" class="form-control select2bs4">
                   <?php
                   require_once "../scripts/connect.php";
                   $result = $conn->query("SELECT id, city FROM cities");
@@ -101,6 +101,11 @@ session_start();
                   }
                   ?>
               </select>
+              <div class="input-group-append">
+                  <div class="input-group-text">
+                      <span class="fas fa-city"></span>
+                  </div>
+              </div>
           </div>
 
         <div class="row">
@@ -146,23 +151,30 @@ session_start();
 <script src="../dist/js/adminlte.min.js"></script>
 
 <?php
-if (isset($_SESSION["error"])) {
-    if ($_SESSION["error"] === "Zarejestrowano użytkownika") {
-        $class = "bg-success";
-        $title = "Sukces";
-    } else {
-        $class = "bg-warning";
-        $title = "Uwaga";
-    }
-
+if (isset($_SESSION["success"])) {
     echo <<< SCRIPT
         <script>
             $(document).Toasts('create', {
-                class: '$class',
-                title: '$title',
+                class: 'bg-success',
+                title: 'Sukces',
+                body: '$_SESSION[success]',
+                autohide: true,
+                delay: 4000,
+                icon: 'fas fa-check'
+            });
+        </script>
+    SCRIPT;
+    unset($_SESSION["success"]);
+} else if (isset($_SESSION["error"])) {
+    echo <<< SCRIPT
+        <script>
+            $(document).Toasts('create', {
+                class: 'bg-warning',
+                title: 'Uwaga',
                 body: '$_SESSION[error]',
                 autohide: true,
-                delay: 3000
+                delay: 4000,
+                icon: 'fas fa-exclamation-triangle'
             });
         </script>
     SCRIPT;
