@@ -42,3 +42,5 @@ $stmt->bind_param("sissss", $_POST["email1"], $_POST["city_id"], $_POST["firstNa
 $stmt->execute();
 
 echo $stmt->affected_rows;
+$_SESSION["error"] = "Zarejestrowano użytkownika";
+header("location: ../pages/register.php");

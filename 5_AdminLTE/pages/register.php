@@ -147,11 +147,19 @@ session_start();
 
 <?php
 if (isset($_SESSION["error"])) {
+    if ($_SESSION["error"] === "Zarejestrowano użytkownika") {
+        $class = "bg-success";
+        $title = "Sukces";
+    } else {
+        $class = "bg-warning";
+        $title = "Uwaga";
+    }
+
     echo <<< SCRIPT
         <script>
             $(document).Toasts('create', {
-                class: 'bg-warning',
-                title: 'Uwaga',
+                class: '$class',
+                title: '$title',
                 body: '$_SESSION[error]',
                 autohide: true,
                 delay: 3000
