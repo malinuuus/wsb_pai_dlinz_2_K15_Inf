@@ -30,13 +30,15 @@ if ($error == 0 && !isset($_POST["terms"])) {
 
 // sprawdzenie, czy email już istnieje
 require_once "connect.php";
-$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-$stmt->bind_param("s", $_POST["email1"]);
-$stmt->execute();
+if ($error == 0) {
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $_POST["email1"]);
+    $stmt->execute();
 
-if ($stmt->get_result()->num_rows > 0) {
-    $_SESSION["error"] = "Podany e-mail jest zajęty!";
-    $error++;
+    if ($stmt->get_result()->num_rows > 0) {
+        $_SESSION["error"] = "Podany e-mail jest zajęty!";
+        $error++;
+    }
 }
 
 if ($error != 0) {
