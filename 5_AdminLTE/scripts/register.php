@@ -28,6 +28,11 @@ if ($error == 0 && !isset($_POST["terms"])) {
     $error++;
 }
 
+if ($error == 0 && !isset($_POST["gender"])) {
+    $_SESSION["error"] = "Zaznacz płeć!";
+    $error++;
+}
+
 // sprawdzenie, czy email już istnieje
 require_once "connect.php";
 if ($error == 0) {
@@ -47,10 +52,11 @@ if ($error != 0) {
 }
 
 $hashedPassword = password_hash($_POST["pass1"], PASSWORD_ARGON2I);
+$avatarPath = $_POST["gender"] == "w" ? "./img/woman-avatar.jpg" : "./img/man-avatar.jpg";
 
 // zabezpieczenie przed sql injection
-$stmt = $conn->prepare("INSERT INTO users (email, city_id, firstName, lastName, birthday, password, created_at) VALUES (?, ?, ? ,?, ?, ?, CURRENT_TIMESTAMP());");
-$stmt->bind_param("sissss", $_POST["email1"], $_POST["city_id"], $_POST["firstName"], $_POST["lastName"], $_POST["birthday"], $hashedPassword);
+$stmt = $conn->prepare("INSERT INTO users (email, city_id, firstName, lastName, birthday, gender, avatar, password, created_at) VALUES (?, ?, ? ,?, ?, ?, ?, ?, CURRENT_TIMESTAMP());");
+$stmt->bind_param("sissssss", $_POST["email1"], $_POST["city_id"], $_POST["firstName"], $_POST["lastName"], $_POST["birthday"], $_POST["gender"], $avatarPath, $hashedPassword);
 $stmt->execute();
 
 if ($stmt->affected_rows == 1) {
