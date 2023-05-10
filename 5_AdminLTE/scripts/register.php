@@ -23,6 +23,11 @@ if ($error == 0 && $_POST["pass1"] !== $_POST["pass2"]) {
     $error++;
 }
 
+if ($error == 0 && !preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\d\s])\S{8,}$/', $_POST["pass1"])) {
+    $_SESSION["error"] = "Hasło nie spełnia wymagań!";
+    $error++;
+}
+
 if ($error == 0 && !isset($_POST["terms"])) {
     $_SESSION["error"] = "Zatwierdź regulamin!";
     $error++;
