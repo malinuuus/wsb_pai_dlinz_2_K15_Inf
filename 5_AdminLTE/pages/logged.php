@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION["logged"]) || session_status() != PHP_SESSION_ACTIVE) {
+    $_SESSION["error"] = "Zaloguj się!";
+    header("location: ./");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,18 +15,18 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="../AdminLTE-3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../AdminLTE-3.2.0/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__wobble" src="../AdminLTE-3.2.0/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -71,7 +78,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="../AdminLTE-3.2.0/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -87,7 +94,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="../AdminLTE-3.2.0/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -103,7 +110,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="../AdminLTE-3.2.0/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -164,7 +171,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="../AdminLTE-3.2.0/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
@@ -173,7 +180,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../AdminLTE-3.2.0/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
@@ -213,7 +220,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link active">
+                <a href="logged.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v2</p>
                 </a>
@@ -1141,7 +1148,7 @@
                           <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
                         </div>
                         <!-- /.direct-chat-infos -->
-                        <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
+                        <img class="direct-chat-img" src="../AdminLTE-3.2.0/dist/img/user1-128x128.jpg" alt="message user image">
                         <!-- /.direct-chat-img -->
                         <div class="direct-chat-text">
                           Is this template really for free? That's unbelievable!
@@ -1157,7 +1164,7 @@
                           <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
                         </div>
                         <!-- /.direct-chat-infos -->
-                        <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
+                        <img class="direct-chat-img" src="../AdminLTE-3.2.0/dist/img/user3-128x128.jpg" alt="message user image">
                         <!-- /.direct-chat-img -->
                         <div class="direct-chat-text">
                           You better believe it!
@@ -1173,7 +1180,7 @@
                           <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
                         </div>
                         <!-- /.direct-chat-infos -->
-                        <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
+                        <img class="direct-chat-img" src="../AdminLTE-3.2.0/dist/img/user1-128x128.jpg" alt="message user image">
                         <!-- /.direct-chat-img -->
                         <div class="direct-chat-text">
                           Working with AdminLTE on a great new app! Wanna join?
@@ -1189,7 +1196,7 @@
                           <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
                         </div>
                         <!-- /.direct-chat-infos -->
-                        <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
+                        <img class="direct-chat-img" src="../AdminLTE-3.2.0/dist/img/user3-128x128.jpg" alt="message user image">
                         <!-- /.direct-chat-img -->
                         <div class="direct-chat-text">
                           I would love to.
@@ -1206,7 +1213,7 @@
                       <ul class="contacts-list">
                         <li>
                           <a href="#">
-                            <img class="contacts-list-img" src="dist/img/user1-128x128.jpg" alt="User Avatar">
+                            <img class="contacts-list-img" src="../AdminLTE-3.2.0/dist/img/user1-128x128.jpg" alt="User Avatar">
 
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
@@ -1221,7 +1228,7 @@
                         <!-- End Contact Item -->
                         <li>
                           <a href="#">
-                            <img class="contacts-list-img" src="dist/img/user7-128x128.jpg" alt="User Avatar">
+                            <img class="contacts-list-img" src="../AdminLTE-3.2.0/dist/img/user7-128x128.jpg" alt="User Avatar">
 
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
@@ -1236,7 +1243,7 @@
                         <!-- End Contact Item -->
                         <li>
                           <a href="#">
-                            <img class="contacts-list-img" src="dist/img/user3-128x128.jpg" alt="User Avatar">
+                            <img class="contacts-list-img" src="../AdminLTE-3.2.0/dist/img/user3-128x128.jpg" alt="User Avatar">
 
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
@@ -1251,7 +1258,7 @@
                         <!-- End Contact Item -->
                         <li>
                           <a href="#">
-                            <img class="contacts-list-img" src="dist/img/user5-128x128.jpg" alt="User Avatar">
+                            <img class="contacts-list-img" src="../AdminLTE-3.2.0/dist/img/user5-128x128.jpg" alt="User Avatar">
 
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
@@ -1266,7 +1273,7 @@
                         <!-- End Contact Item -->
                         <li>
                           <a href="#">
-                            <img class="contacts-list-img" src="dist/img/user6-128x128.jpg" alt="User Avatar">
+                            <img class="contacts-list-img" src="../AdminLTE-3.2.0/dist/img/user6-128x128.jpg" alt="User Avatar">
 
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
@@ -1281,7 +1288,7 @@
                         <!-- End Contact Item -->
                         <li>
                           <a href="#">
-                            <img class="contacts-list-img" src="dist/img/user8-128x128.jpg" alt="User Avatar">
+                            <img class="contacts-list-img" src="../AdminLTE-3.2.0/dist/img/user8-128x128.jpg" alt="User Avatar">
 
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
@@ -1336,42 +1343,42 @@
                   <div class="card-body p-0">
                     <ul class="users-list clearfix">
                       <li>
-                        <img src="dist/img/user1-128x128.jpg" alt="User Image">
+                        <img src="../AdminLTE-3.2.0/dist/img/user1-128x128.jpg" alt="User Image">
                         <a class="users-list-name" href="#">Alexander Pierce</a>
                         <span class="users-list-date">Today</span>
                       </li>
                       <li>
-                        <img src="dist/img/user8-128x128.jpg" alt="User Image">
+                        <img src="../AdminLTE-3.2.0/dist/img/user8-128x128.jpg" alt="User Image">
                         <a class="users-list-name" href="#">Norman</a>
                         <span class="users-list-date">Yesterday</span>
                       </li>
                       <li>
-                        <img src="dist/img/user7-128x128.jpg" alt="User Image">
+                        <img src="../AdminLTE-3.2.0/dist/img/user7-128x128.jpg" alt="User Image">
                         <a class="users-list-name" href="#">Jane</a>
                         <span class="users-list-date">12 Jan</span>
                       </li>
                       <li>
-                        <img src="dist/img/user6-128x128.jpg" alt="User Image">
+                        <img src="../AdminLTE-3.2.0/dist/img/user6-128x128.jpg" alt="User Image">
                         <a class="users-list-name" href="#">John</a>
                         <span class="users-list-date">12 Jan</span>
                       </li>
                       <li>
-                        <img src="dist/img/user2-160x160.jpg" alt="User Image">
+                        <img src="../AdminLTE-3.2.0/dist/img/user2-160x160.jpg" alt="User Image">
                         <a class="users-list-name" href="#">Alexander</a>
                         <span class="users-list-date">13 Jan</span>
                       </li>
                       <li>
-                        <img src="dist/img/user5-128x128.jpg" alt="User Image">
+                        <img src="../AdminLTE-3.2.0/dist/img/user5-128x128.jpg" alt="User Image">
                         <a class="users-list-name" href="#">Sarah</a>
                         <span class="users-list-date">14 Jan</span>
                       </li>
                       <li>
-                        <img src="dist/img/user4-128x128.jpg" alt="User Image">
+                        <img src="../AdminLTE-3.2.0/dist/img/user4-128x128.jpg" alt="User Image">
                         <a class="users-list-name" href="#">Nora</a>
                         <span class="users-list-date">15 Jan</span>
                       </li>
                       <li>
-                        <img src="dist/img/user3-128x128.jpg" alt="User Image">
+                        <img src="../AdminLTE-3.2.0/dist/img/user3-128x128.jpg" alt="User Image">
                         <a class="users-list-name" href="#">Nadia</a>
                         <span class="users-list-date">15 Jan</span>
                       </li>
@@ -1621,7 +1628,7 @@
                 <ul class="products-list product-list-in-card pl-2 pr-2">
                   <li class="item">
                     <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
+                      <img src="../AdminLTE-3.2.0/dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
                     </div>
                     <div class="product-info">
                       <a href="javascript:void(0)" class="product-title">Samsung TV
@@ -1634,7 +1641,7 @@
                   <!-- /.item -->
                   <li class="item">
                     <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
+                      <img src="../AdminLTE-3.2.0/dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
                     </div>
                     <div class="product-info">
                       <a href="javascript:void(0)" class="product-title">Bicycle
@@ -1647,7 +1654,7 @@
                   <!-- /.item -->
                   <li class="item">
                     <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
+                      <img src="../AdminLTE-3.2.0/dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
                     </div>
                     <div class="product-info">
                       <a href="javascript:void(0)" class="product-title">
@@ -1663,7 +1670,7 @@
                   <!-- /.item -->
                   <li class="item">
                     <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
+                      <img src="../AdminLTE-3.2.0/dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
                     </div>
                     <div class="product-info">
                       <a href="javascript:void(0)" class="product-title">PlayStation 4
@@ -1698,40 +1705,35 @@
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
-    </div>
-  </footer>
+    <!-- Main Footer -->
+    <?php
+    require_once "views/footer.php";
+    ?>
 </div>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="../AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="../AdminLTE-3.2.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
+<script src="../AdminLTE-3.2.0/dist/js/adminlte.js"></script>
 
-<!-- PAGE PLUGINS -->
+<!-- PAGE ../AdminLTE-3.2.0/plugins -->
 <!-- jQuery Mapael -->
-<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="plugins/raphael/raphael.min.js"></script>
-<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<script src="../AdminLTE-3.2.0/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="../AdminLTE-3.2.0/plugins/raphael/raphael.min.js"></script>
+<script src="../AdminLTE-3.2.0/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="../AdminLTE-3.2.0/plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
+<script src="../AdminLTE-3.2.0/plugins/chart.js/Chart.min.js"></script>
 
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+<script src="../AdminLTE-3.2.0/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard2.js"></script>
+<script src="../AdminLTE-3.2.0/dist/js/pages/dashboard2.js"></script>
 </body>
 </html>

@@ -2,11 +2,17 @@
 // sanityzacja
 // poszukać czemu trim nie działa
 function sanitizeInput(&$input) {
-    $input = htmlentities(stripslashes(trim($input)));
+    $input = htmlspecialchars(strip_tags(trim($input)));
     return $input;
 }
 //
-//echo $_POST["firstName"]." ==> ".sanitizeInput($_POST["firstName"]).", ilość znaków: ".strlen($_POST["firstName"]);
+//echo strlen(sanitizeInput($_POST["firstName"]))."<br>";
+//echo sanitizeInput($_POST["firstName"]);
+//exit();
+
+//echo $_POST["firstName"].", długość: ".strlen($_POST["firstName"])."<br>";
+//sanitizeInput($_POST["firstName"]);
+//echo $_POST["firstName"].", długość: ".strlen($_POST["firstName"])."<br>";
 //exit();
 
 // działa też, jeśli ktoś próbuje zmienić method na post w dev toolsach
@@ -79,11 +85,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    foreach ($_POST as $key => $value) {
-        if (!$_POST["pass1"] && !$_POST["pass2"]) {
-            sanitizeInput($_POST["$key"]);
-        }
-    }
+    // sanityzacja - dokończyć
+//    foreach ($_POST as $key => $value) {
+//        if (!$_POST["pass1"] && !$_POST["pass2"]) {
+//            sanitizeInput($_POST["$key"]);
+//        }
+//    }
 
     $hashedPassword = password_hash($_POST["pass1"], PASSWORD_ARGON2I);
     $avatarPath = $_POST["gender"] == "w" ? "./img/woman-avatar.jpg" : "./img/man-avatar.jpg";
@@ -95,6 +102,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->affected_rows == 1) {
         $_SESSION["success"] = "Zarejestrowano użytkownika";
+        header("location: ../pages");
+        exit();
     } else {
         $errors[] = "Nie udało się zarejestrować użytkownika!";
     }

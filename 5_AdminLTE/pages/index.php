@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (isset($_SESSION["logged"]) && session_status() == 2) {
+    header("location: logged.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,17 +24,24 @@
 </head>
 <body class="hold-transition login-page">
 <?php
-session_start();
 if (isset($_SESSION["error"])) {
-    echo "<div class='callout callout-danger'>";
-    echo "<h5>Błąd!</h5>";
-
-    foreach ($_SESSION["error"] as $key => $value) {
-        echo "<p>$value</p>";
-    }
-
-    echo "</div>";
+    echo <<< ERROR
+        <div class='callout callout-danger'>
+            <h5>Błąd!</h5>
+            <p>$_SESSION[error]</p>
+        </div>
+    ERROR;
     unset($_SESSION["error"]);
+}
+
+if (isset($_SESSION["success"])) {
+    echo <<< SUCCESS
+        <div class='callout callout-success'>
+            <h5>Gratulacje!</h5>
+            <p>$_SESSION[success]</p>
+        </div>
+    SUCCESS;
+    unset($_SESSION["success"]);
 }
 ?>
 <div class="login-box">
