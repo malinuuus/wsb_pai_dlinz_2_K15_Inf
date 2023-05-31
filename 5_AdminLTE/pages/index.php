@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["logged"]) && session_status() == 2) {
+if (isset($_SESSION["logged"]) && session_status() == 2 && session_id() == $_SESSION["logged"]["session_id"]) {
     header("location: logged.php");
     exit();
 }
