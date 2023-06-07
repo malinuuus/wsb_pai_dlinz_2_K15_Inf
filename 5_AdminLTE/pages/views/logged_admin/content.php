@@ -482,13 +482,13 @@
                             <!-- USERS LIST -->
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Użytkownicy</h3>
+                                    <h3 class="card-title">Logowanie użytkowników</h3>
 
                                     <div class="card-tools">
                                         <span class="badge badge-danger">
                                             <?php
                                             require_once "../scripts/connect.php";
-                                            $result = $conn->query("SELECT u.firstName, u.lastName, u.avatar, r.role FROM users u INNER JOIN roles r on u.role_id = r.id");
+                                            $result = $conn->query("SELECT u.firstName, u.lastName, u.avatar, l.created_at, l.status FROM logs l INNER JOIN users u on l.user_id = u.id ORDER BY l.created_at DESC LIMIT 8");
                                             $count = $result->num_rows;
                                             echo $count." użytkowników";
                                             ?>
@@ -506,11 +506,14 @@
                                     <ul class="users-list clearfix">
                                         <?php
                                         while ($user = $result->fetch_assoc()) {
+                                            $isLogged = $user["status"] ? "Zalogowany" : "Niezalogowany";
+
                                             echo <<< USER
                                                 <li>
                                                     <img src="../$user[avatar]" alt="User Image">
                                                     <a class="users-list-name" href="#">$user[firstName] $user[lastName]</a>
-                                                    <span class="users-list-date">$user[role]</span>
+                                                    <span class="users-list-date">$isLogged</span>
+                                                    <span class="users-list-date">$user[created_at]</span>
                                                 </li>
                                             USER;
                                         }

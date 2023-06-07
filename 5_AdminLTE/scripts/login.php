@@ -28,6 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     if ($result->num_rows != 0) {
         $user = $result->fetch_assoc();
+        $userId = $user["id"];
+        $addressIp = $_SERVER["REMOTE_ADDR"]; // adres ip
 
         if (password_verify($_POST["pass"], $user["password"])) {
             $_SESSION["logged"]["firstName"] = $user["firstName"];
@@ -35,9 +37,19 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             $_SESSION["logged"]["role_id"] = $user["role_id"];
             $_SESSION["logged"]["session_id"] = session_id(); // identyfikator sesji
 
+            // logs
+            $stmt = $conn->prepare("INSERT INTO logs (user_id, status, address_ip) VALUES (?, 1, ?)");
+            $stmt->bind_param("is", $userId, $addressIp);
+            $stmt->execute();
+
             header("location: ../pages/logged.php");
             exit();
         } else {
+            // logs
+            $stmt = $conn->prepare("INSERT INTO logs (user_id, status, address_ip) VALUES (?, 0, ?)");
+            $stmt->bind_param("is", $userId, $addressIp);
+            $stmt->execute();
+
             $error = 1;
         }
     } else {
